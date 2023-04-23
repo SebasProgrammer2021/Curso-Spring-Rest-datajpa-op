@@ -1,5 +1,7 @@
 package com.example.restdatajpaop.controllers;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +31,13 @@ class HelloControlerTest {
         testRestTemplate = new TestRestTemplate(restTemplateBuilder);
     }
 
+    @DisplayName("Comprobar la ruta hello desde controladores spring REST")
     @Test
     void holamundo() {
 //lanza la petición y obtiene la respuesta.
         ResponseEntity<String> response = testRestTemplate.getForEntity("/hello", String.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Hello Worlde rd nuevo", response.getBody());
+        Assertions.assertEquals("Hello Worlde rd nuevo", response.getBody());
     }
 }
